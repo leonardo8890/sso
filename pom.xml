@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.leonardo</groupId>
-    <artifactId>sso2</artifactId>
+    <artifactId>sso</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>sso2</name>
     <description>sso2</description>
