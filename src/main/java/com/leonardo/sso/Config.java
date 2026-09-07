@@ -30,7 +30,7 @@ public class Config{
                 .addFilterBefore(filterPerRequest, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST,"/auth/signin").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth/signup").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/signup").hasAuthority("ADMIN")
                 )
                 .build();
     }
