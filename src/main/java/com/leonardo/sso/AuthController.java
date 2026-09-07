@@ -21,12 +21,14 @@ public class AuthController {
 
     @PostMapping("/signin")
     public ResponseEntity signin(@RequestBody UserDto dto){
+        UserModel userModel = new UserModel(dto.login(),null, dto.role());
+
+        // Se o usuário estiver cadastrado
         if(userService.hasUser(dto.login())){
-            var loginPassword = new UsernamePasswordAuthenticationToken(
-                    dto.login(), dto.password()
-            ); //"pacote" com login e senha
+            var loginPassword = new UsernamePasswordAuthenticationToken(dto.login(), dto.password()); // "Pacote" com login e senha
             var autenticacao = authenticationManager.authenticate(loginPassword);
-            return ResponseEntity.ok(tokensService.generate(dto.login()));
+            String token = tokensService.generate(dto);
+            return ResponseEntity.ok(token);
         }
         return ResponseEntity.badRequest().build();
     }
@@ -39,7 +41,7 @@ public class AuthController {
                     passwordEncoder.encode(dto.password()), //Hash
                     dto.role());
             userService.saveUser(user);
-            return ResponseEntity.ok(tokensService.generate(dto.login()));
+            return ResponseEntity.ok(tokensService.generate(dto));
         }
         return ResponseEntity.badRequest().build();
     }
