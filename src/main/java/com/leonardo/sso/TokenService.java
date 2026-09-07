@@ -14,7 +14,7 @@ public class TokenService {
     private final Algorithm algorithm;
 
     public TokenService(@Value("${jwt.secret}") String secret){
-        algorithm = Algorithm.HMAC256("abc123");
+        algorithm = Algorithm.HMAC256(secret);
     }
 
     //retorna o token
