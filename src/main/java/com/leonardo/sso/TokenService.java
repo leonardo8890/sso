@@ -22,7 +22,7 @@ public class TokenService {
         return JWT.create()
                 .withIssuer("sso")
                 .withSubject(login)
-                .withExpiresAt(Instant.now().plus(30, ChronoUnit.MINUTES))
+                .withExpiresAt(Instant.now().plus(120, ChronoUnit.MINUTES))
                 .sign(algorithm);
     }
 
