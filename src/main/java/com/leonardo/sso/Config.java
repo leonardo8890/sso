@@ -29,8 +29,8 @@ public class Config{
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(filterPerRequest, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST,"/auth/signin").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth/signup").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.POST,"/autenticacao/entrar").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/autenticacao/cadastrar").hasAuthority("ADMIN")
                 )
                 .build();
     }

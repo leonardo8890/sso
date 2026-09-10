@@ -8,7 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/autenticacao")
 public class AuthController {
     @Autowired
     UserService userService;
@@ -19,8 +19,8 @@ public class AuthController {
     @Autowired
     AuthenticationManager authenticationManager;
 
-    @PostMapping("/signin")
-    public ResponseEntity signin(@RequestBody UserDto dto){
+    @PostMapping("/entrar")
+    public ResponseEntity entrar(@RequestBody UserDto dto){
         UserModel userModel = new UserModel(dto.login(),null, dto.role());
 
         // Se o usuário estiver cadastrado
@@ -33,8 +33,8 @@ public class AuthController {
         return ResponseEntity.badRequest().build();
     }
 
-    @PostMapping("/signup")
-    public ResponseEntity signup(@RequestBody UserDto dto){
+    @PostMapping("/cadastrar")
+    public ResponseEntity cadastrar(@RequestBody UserDto dto){
         if(!userService.hasUser(dto.login())){
             UserModel user = new UserModel(
                     dto.login(),
